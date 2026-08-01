@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusCare | College Complaint System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast" class="toast hidden"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="icon">🏛️</span> CampusCare
+        </div>
+        <div class="nav-links" id="nav-links">
+            <button id="logout-btn" class="btn btn-outline hidden">Logout</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Login Section -->
+        <section id="login-section" class="section active">
+            <div class="glass-card login-card">
+                <div class="login-header">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your details to access your account.</p>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" data-role="student">Student</button>
+                    <button class="tab-btn" data-role="admin">Admin</button>
+                </div>
+
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username / ID</label>
+                        <input type="text" id="username" placeholder="e.g. S12345 or Admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Any password works for demo" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Sign In <span class="arrow">→</span></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Student Dashboard -->
+        <section id="student-dashboard" class="section hidden">
+            <div class="dashboard-header">
+                <h2>Student Dashboard</h2>
+                <p>Submit and track your complaints easily.</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Submit Complaint Card -->
+                <div class="glass-card">
+                    <h3>📢 File a New Complaint</h3>
+                    <form id="complaint-form">
+                        <div class="form-group">
+                            <label for="c-category">Category</label>
+                            <select id="c-category" required>
+                                <option value="" disabled selected>Select category...</option>
+                                <option value="Hostel">Hostel & Accommodation</option>
+                                <option value="Academics">Academics & Faculty</option>
+                                <option value="Infrastructure">Infrastructure (Wi-Fi, Water)</option>
+                                <option value="Ragging">Anti-Ragging / Harassment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="c-subject">Subject</label>
+                            <input type="text" id="c-subject" placeholder="Brief subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="c-desc">Description</label>
+                            <textarea id="c-desc" rows="4" placeholder="Detailed description of the issue..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                    </form>
+                </div>
+
+                <!-- My Complaints List -->
+                <div class="glass-card">
+                    <h3>📋 My Recent Complaints</h3>
+                    <div class="complaints-list" id="student-complaints-list">
+                        <!-- Items will be injected here via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-dashboard" class="section hidden">
+            <div class="dashboard-header">
+                <h2>Admin Dashboard</h2>
+                <p>Manage and resolve campus issues.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Total Complaints</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value text-warning" id="stat-pending">0</div>
+                    <div class="stat-label">Pending Resolution</div>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-value text-success" id="stat-resolved">0</div>
+                    <div class="stat-label">Resolved Issues</div>
+                </div>
+            </div>
+
+            <div class="glass-card mt-2">
+                <h3>All Complaints</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Student</th>
+                                <th>Category</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-complaints-table">
+                            <!-- Rows will be injected here via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
